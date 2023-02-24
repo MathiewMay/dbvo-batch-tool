@@ -3,6 +3,10 @@ The DBVO Batch tool is a tool that automates the generation of audio file from a
 
 Simply type you elevenlabs api key, select a voice type and import the text file, the tool will go line by line and generate an audio file for each line in the text file.
 
+## Installation
+To install the software you have to join the DBVO discord server and locate the exe (executable) file in the #dbvo-tools channel, everything that you need to know is explained there.
+https://discord.gg/F6rN23dENw
+
 ## Dev environment
 If you want to help with the development of DBVO Batch Tool you will need to setup a dev environment.
 
