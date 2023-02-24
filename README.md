@@ -1,7 +1,19 @@
-# Tauri + Vue 3
+# DBVO Batch Tool
+The DBVO Batch tool is a tool that automates the generation of audio file from a txt file, at the moment it works with https://beta.elevenlabs.io/
 
-This template should help get you started developing with Tauri + Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Simply type you elevenlabs api key, select a voice type and import the text file, the tool will go line by line and generate an audio file for each line in the text file.
 
-## Recommended IDE Setup
+## Dev environment
+If you want to help with the development of DBVO Batch Tool you will need to setup a dev environment.
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) + [Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode) + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)
+Install dev environment
+```
+git clone https://github.com/MathiewMay/dbvo-batch-tool
+cd ./dbvo-batch-tool
+npm install
+```
+
+Run dev environment
+```
+npm run tauri dev
+```
