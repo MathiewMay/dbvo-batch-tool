@@ -473,7 +473,7 @@ dependencies = [
 
 [[package]]
 name = "dbvo-batch-tool"
-version = "0.0.0"
+version = "0.0.4"
 dependencies = [
  "serde",
  "serde_json",

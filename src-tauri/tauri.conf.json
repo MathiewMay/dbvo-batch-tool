@@ -73,7 +73,7 @@
     "windows": [
       {
         "fullscreen": false,
-        "height": 600,
+        "height": 800,
         "resizable": true,
         "title": "Dragonborn Voice Over - ElevenLabs AI Batch Tool",
         "width": 800

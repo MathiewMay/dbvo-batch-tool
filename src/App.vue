@@ -15,6 +15,9 @@ export default {
       userInfo: null,
       selectedVoice: null,
       outputPath: null,
+      stability: 80,
+      clarity: 80,
+
       
       generationState: false,
       generationIntervalId: null,
@@ -136,10 +139,10 @@ export default {
 
     async postTTS(topic){
       const requestBody = Body.json({
-        text: topic,
-        voice_settings: {
-          stability: 0,
-          similarity_boost: 0
+        "text": this.removeParentheses(topic),
+        "voice_settings": {
+          "stability": this.stability/100,
+          "similarity_boost": this.clarity/100
         }
       });
       const headers = {
@@ -157,6 +160,7 @@ export default {
           await this.saveAudio(response, topic);
         } else {
           this.messages.push("There was a unknown error in postTTS");
+          console.log(JSON.stringify(response));
           this.stopGenerating();
         }
       })
@@ -189,8 +193,13 @@ export default {
 
     parseString(str) {
       const regex = /[\[\]{}()*+?.,\\^$|#\s]/g;
-      str = str.replace(regex, '_').replace(/\([^)]*\)/g, '');
+      str = this.removeParentheses(str);
+      str = str.replace(regex, '_');
       return str;
+    },
+
+    removeParentheses(str){
+      return str.replace(/\s*\([^)]*\)\s*/g, "");
     }
   },
   computed: {
@@ -250,6 +259,12 @@ export default {
           <option v-for="voice in voices" :value="JSON.stringify(voice)">{{ voice.name }}</option>
         </select>
         <button @click="playPreviewAudio" :disabled="isVoicesEmpty">Preview</button>
+      </div>
+      <div class="voice_settings">
+        <label for="stability_slider">Stability: {{ stability }}%</label>
+        <input type="range" id="stability_slider" name="stability_slider" min="0" max="100" v-model="stability">
+        <label for="stability_slider">Clarity: {{ clarity }}%</label>
+        <input type="range" id="stability_slider" name="stability_slider" min="0" max="100" v-model="clarity">
       </div>
     </div>
     <div class="middle">
@@ -317,7 +332,7 @@ export default {
   text-align: left;
   border-radius: 0.5rem;
   width: 100%;
-  height: calc(100vh - 160px);
+  height: calc(100vh - 323px);
   overflow-y: auto;
   box-sizing: border-box;
   background-color: #0f0f0f98;
@@ -356,5 +371,17 @@ button:disabled {
 }
 .info-label {
   white-space: pre-line;
+}
+
+.voice_settings {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  width: 100%;
+  text-align: left;
+  padding-top: 1rem;
+}
+.voice_settings input {
+  box-shadow: none;
 }
 </style>
