@@ -16,9 +16,8 @@ export default {
       selectedVoice: null,
       outputPath: null,
       stability: 80,
-      clarity: 80,
+      similarity: 80,
 
-      
       generationState: false,
       generationIntervalId: null,
       generationIndex: 0,
@@ -142,7 +141,7 @@ export default {
         "text": this.removeParentheses(topic),
         "voice_settings": {
           "stability": this.stability/100,
-          "similarity_boost": this.clarity/100
+          "similarity_boost": this.similarity/100
         }
       });
       const headers = {
@@ -262,9 +261,9 @@ export default {
       </div>
       <div class="voice_settings">
         <label for="stability_slider">Stability: {{ stability }}%</label>
-        <input type="range" id="stability_slider" name="stability_slider" min="0" max="100" v-model="stability">
-        <label for="stability_slider">Clarity: {{ clarity }}%</label>
-        <input type="range" id="stability_slider" name="stability_slider" min="0" max="100" v-model="clarity">
+        <input v-bind:disabled="generationState" type="range" id="stability_slider" name="stability_slider" min="0" max="100" v-model="stability">
+        <label for="similarity_slider">Similarity: {{ similarity }}%</label>
+        <input v-bind:disabled="generationState" type="range" id="similarity_slider" name="similarity_slider" min="0" max="100" v-model="similarity">
       </div>
     </div>
     <div class="middle">
