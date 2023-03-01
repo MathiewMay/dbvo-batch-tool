@@ -191,7 +191,7 @@ export default {
     },
 
     parseString(str) {
-      const regex = /[\[\]{}()*+?.,\\^$|#\s]/g;
+      const regex = /[\s\\/:*?"<>|]/g
       str = this.removeParentheses(str);
       str = str.replace(regex, '_');
       return str;
